@@ -1,0 +1,49 @@
+{
+	"name": "pl_master_pipline",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_set_var_curnt_dt",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "return_date",
+							"value": {
+								"type": "Expression",
+								"content": "@pipeline().parameters.date_val"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			}
+		],
+		"parameters": {
+			"date_val": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"current_dt1": {
+				"type": "String"
+			},
+			"pipleine_return": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session 1"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-29T08:53:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

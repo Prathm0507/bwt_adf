@@ -1,0 +1,113 @@
+{
+	"name": "pl_iteration",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_foreach_test",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.lst",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "act_if_cond_check_value",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(string(item()),pipeline().parameters.check_variable)",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "act_append_var_list",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "new_lst",
+											"value": {
+												"value": "@item()",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "act_set_array_display",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_foreach_test",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "new_test_array",
+					"value": {
+						"value": "@variables('new_lst')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"lst": {
+				"type": "array",
+				"defaultValue": [
+					1,
+					2,
+					3,
+					4,
+					5
+				]
+			},
+			"check_variable": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"new_lst": {
+				"type": "Array"
+			},
+			"new_test_array": {
+				"type": "Array"
+			},
+			"session_nm_var": {
+				"type": "String"
+			},
+			"test": {
+				"type": "Integer"
+			},
+			"range_even_number": {
+				"type": "Array"
+			},
+			"element": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "session 1"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-21T09:26:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

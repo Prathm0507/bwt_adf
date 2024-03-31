@@ -1,0 +1,19 @@
+{
+	"name": "ds_source_question4th",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_source_question4th",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "movies",
+				"container": "input"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

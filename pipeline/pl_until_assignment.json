@@ -1,0 +1,113 @@
+{
+	"name": "pl_until_assignment",
+	"properties": {
+		"activities": [
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@empty(variables('range'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "skip_range",
+								"value": {
+									"value": "@skip(variables('range'),1)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "range",
+								"value": {
+									"value": "@variables('skip_range')",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			}
+		],
+		"variables": {
+			"range": {
+				"type": "Array",
+				"defaultValue": [
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10
+				]
+			},
+			"skip_range": {
+				"type": "Array"
+			},
+			"range_output": {
+				"type": "Array"
+			},
+			"output_range": {
+				"type": "Array"
+			},
+			"numbers": {
+				"type": "Array"
+			},
+			"finalarr": {
+				"type": "Array"
+			},
+			"result": {
+				"type": "String"
+			},
+			"finalresult": {
+				"type": "Array"
+			},
+			"arr": {
+				"type": "Array"
+			},
+			"new_range": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "ASSIGMENT_SESSION"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-23T13:03:01Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

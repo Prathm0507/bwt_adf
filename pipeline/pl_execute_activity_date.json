@@ -1,0 +1,94 @@
+{
+	"name": "pl_execute_activity_date",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_set_var_cuurent_dt",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_dt1",
+					"value": {
+						"value": "@utcnow()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_exec_child_pipline",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "act_set_var_cuurent_dt",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_master_pipline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"date_val": {
+							"value": "@variables('current_dt1')",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "act_set_var_pipline_return",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_exec_child_pipline",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipleine_return",
+					"value": {
+						"value": "@activity('act_exec_child_pipline').output.pipelineReturnValue.return_date",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"current_dt": {
+				"type": "String"
+			},
+			"current_dt1": {
+				"type": "String"
+			},
+			"pipleine_return": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session 1"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-29T08:53:06Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

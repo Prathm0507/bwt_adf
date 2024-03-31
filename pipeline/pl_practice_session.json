@@ -1,0 +1,143 @@
+{
+	"name": "pl_practice_session",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_foreach_iterate_range_param",
+				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Skipped",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.range_array",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "act_set_var_each_element",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "test",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "act_filter_even_values",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "act_foreach_iterate_range_param",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.range_array",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(mod(item(), 2), 0)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Append variable1",
+				"type": "AppendVariable",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Skipped",
+				"dependsOn": [
+					{
+						"activity": "act_filter_even_values",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "range_even_number",
+					"value": {
+						"value": "@activity('act_filter_even_values').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_filter_even_values",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "range_even_number",
+					"value": {
+						"value": "@activity('act_filter_even_values').output.pipelineReturnValue",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"range_array": {
+				"type": "array",
+				"defaultValue": [
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10
+				]
+			}
+		},
+		"variables": {
+			"test": {
+				"type": "Integer"
+			},
+			"range_even_number": {
+				"type": "Array"
+			},
+			"element": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "session 1"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-21T09:26:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,71 @@
+{
+	"name": "ds_storage_sink_genric",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_storage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sink_directory_nm": {
+				"type": "String"
+			},
+			"file_delimeter": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().sink_directory_nm",
+					"type": "Expression"
+				},
+				"container": "adf-practice"
+			},
+			"columnDelimiter": {
+				"value": "@dataset().file_delimeter",
+				"type": "Expression"
+			},
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "EID",
+				"type": "String"
+			},
+			{
+				"name": "ENAME",
+				"type": "String"
+			},
+			{
+				"name": "EJOB",
+				"type": "String"
+			},
+			{
+				"name": "EADD",
+				"type": "String"
+			},
+			{
+				"name": "ECONTACT",
+				"type": "String"
+			},
+			{
+				"name": "ESAL",
+				"type": "String"
+			},
+			{
+				"name": "EDOJ",
+				"type": "String"
+			},
+			{
+				"name": "EDOL",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

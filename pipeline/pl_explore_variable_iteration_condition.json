@@ -1,0 +1,88 @@
+{
+	"name": "pl_explore_variable_iteration_condition",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_set_var_session_nm",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "session_nm",
+					"value": {
+						"value": "BWT ADF SESSION",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var_session_id",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "session_id",
+					"value": {
+						"value": "1",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var_concat_session",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_set_var_session_nm",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "act_set_var_session_id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "session_deatial",
+					"value": {
+						"value": "@concat(variables('session_id'),' ',variables('session_nm'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"session_nm": {
+				"type": "String"
+			},
+			"session_id": {
+				"type": "String"
+			},
+			"session_deatial": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session 1"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-20T07:36:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

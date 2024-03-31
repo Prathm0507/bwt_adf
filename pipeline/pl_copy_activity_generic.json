@@ -1,0 +1,80 @@
+{
+	"name": "pl_copy_activity_generic",
+	"properties": {
+		"description": "this pipline is copy data from source to target and we will have parameterization in it.",
+		"activities": [
+			{
+				"name": "act_copy_data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": "2024-03-18T10:00:00Z",
+							"modifiedDatetimeEnd": "2024-03-19T08:00:00Z",
+							"deleteFilesAfterCompletion": false
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_storage_source_generic",
+						"type": "DatasetReference",
+						"parameters": {
+							"container_nm": "adf-practice",
+							"directory_nm": "input"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_storage_sink_generic",
+						"type": "DatasetReference",
+						"parameters": {
+							"container_nm": "adf-practice"
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"session_nm": {
+				"type": "String"
+			},
+			"session_id": {
+				"type": "String"
+			},
+			"session_deatial": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session 1"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-20T07:36:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
