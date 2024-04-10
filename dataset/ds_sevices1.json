@@ -1,0 +1,19 @@
+{
+	"name": "ds_sevices1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_services1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "files",
+				"fileSystem": "input"
+			}
+		},
+		"schema": {}
+	}
+}

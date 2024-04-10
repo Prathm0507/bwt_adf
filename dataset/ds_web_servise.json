@@ -1,0 +1,23 @@
+{
+	"name": "ds_web_servise",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_web_services",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"yr": {
+					"value": "@dataset().yrsss",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"yrsss": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
