@@ -1,0 +1,63 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-bwt-dev"
+		},
+		"ls_blob_storage_connectionString": {
+			"value": ""
+		},
+		"ls_services_connectionString": {
+			"value": ""
+		},
+		"ls_services1_accountKey": {
+			"value": ""
+		},
+		"ls_source_blob_connectionString": {
+			"value": ""
+		},
+		"ls_source_convert_csv_connectionString": {
+			"value": ""
+		},
+		"ls_source_csv_connectionString": {
+			"value": ""
+		},
+		"ls_source_practic_connectionString": {
+			"value": ""
+		},
+		"ls_source_practice_connectionString": {
+			"value": ""
+		},
+		"ls_source_practice1_connectionString": {
+			"value": ""
+		},
+		"ls_source_q3_connectionString": {
+			"value": ""
+		},
+		"ls_source_question1st_connectionString": {
+			"value": ""
+		},
+		"ls_source_question2nd_connectionString": {
+			"value": ""
+		},
+		"ls_source_question3rd_connectionString": {
+			"value": ""
+		},
+		"ls_source_question4th_connectionString": {
+			"value": ""
+		},
+		"ls_services1_properties_typeProperties_url": {
+			"value": "https://practicesessionazur.dfs.core.windows.net/"
+		},
+		"ls_web_services_properties_typeProperties_url": {
+			"value": "@{concat('http://ergast.com/api/f1/', linkedService().yr,'.json')}"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

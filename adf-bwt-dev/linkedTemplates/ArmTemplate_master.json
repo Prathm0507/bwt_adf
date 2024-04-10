@@ -1,0 +1,194 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-bwt-dev"
+		},
+		"ls_blob_storage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_blob_storage'"
+		},
+		"ls_services_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_services'"
+		},
+		"ls_services1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_services1'"
+		},
+		"ls_source_blob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_blob'"
+		},
+		"ls_source_convert_csv_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_convert_csv'"
+		},
+		"ls_source_csv_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_csv'"
+		},
+		"ls_source_practic_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_practic'"
+		},
+		"ls_source_practice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_practice'"
+		},
+		"ls_source_practice1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_practice1'"
+		},
+		"ls_source_q3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_q3'"
+		},
+		"ls_source_question1st_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_question1st'"
+		},
+		"ls_source_question2nd_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_question2nd'"
+		},
+		"ls_source_question3rd_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_question3rd'"
+		},
+		"ls_source_question4th_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_source_question4th'"
+		},
+		"ls_services1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://practicesessionazur.dfs.core.windows.net/"
+		},
+		"ls_web_services_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{concat('http://ergast.com/api/f1/', linkedService().yr,'.json')}"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-bwt-dev_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_blob_storage_connectionString": {
+						"value": "[parameters('ls_blob_storage_connectionString')]"
+					},
+					"ls_services_connectionString": {
+						"value": "[parameters('ls_services_connectionString')]"
+					},
+					"ls_services1_accountKey": {
+						"value": "[parameters('ls_services1_accountKey')]"
+					},
+					"ls_source_blob_connectionString": {
+						"value": "[parameters('ls_source_blob_connectionString')]"
+					},
+					"ls_source_convert_csv_connectionString": {
+						"value": "[parameters('ls_source_convert_csv_connectionString')]"
+					},
+					"ls_source_csv_connectionString": {
+						"value": "[parameters('ls_source_csv_connectionString')]"
+					},
+					"ls_source_practic_connectionString": {
+						"value": "[parameters('ls_source_practic_connectionString')]"
+					},
+					"ls_source_practice_connectionString": {
+						"value": "[parameters('ls_source_practice_connectionString')]"
+					},
+					"ls_source_practice1_connectionString": {
+						"value": "[parameters('ls_source_practice1_connectionString')]"
+					},
+					"ls_source_q3_connectionString": {
+						"value": "[parameters('ls_source_q3_connectionString')]"
+					},
+					"ls_source_question1st_connectionString": {
+						"value": "[parameters('ls_source_question1st_connectionString')]"
+					},
+					"ls_source_question2nd_connectionString": {
+						"value": "[parameters('ls_source_question2nd_connectionString')]"
+					},
+					"ls_source_question3rd_connectionString": {
+						"value": "[parameters('ls_source_question3rd_connectionString')]"
+					},
+					"ls_services1_properties_typeProperties_url": {
+						"value": "[parameters('ls_services1_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-bwt-dev_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_source_question4th_connectionString": {
+						"value": "[parameters('ls_source_question4th_connectionString')]"
+					},
+					"ls_web_services_properties_typeProperties_url": {
+						"value": "[parameters('ls_web_services_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-bwt-dev_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adf-bwt-dev_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-bwt-dev_ArmTemplate_1')]"
+			]
+		}
+	]
+}
