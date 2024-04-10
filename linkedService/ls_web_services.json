@@ -1,0 +1,17 @@
+{
+	"name": "ls_web_services",
+	"properties": {
+		"parameters": {
+			"yr": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "@{concat('http://ergast.com/api/f1/', linkedService().yr,'.json')}",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
