@@ -1,0 +1,38 @@
+{
+	"name": "ds_sink_round_wise_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"file_name_round": {
+				"type": "String"
+			},
+			"file_name_year": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('season_',dataset().file_name_year,'_round_',dataset().file_name_round,'.json')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('Results','/',string(utcNow('yyyymmdd')))",
+					"type": "Expression"
+				},
+				"fileSystem": "output-formulaone"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "",
+			"firstRowAsHeader": false,
+			"quoteChar": ""
+		},
+		"schema": []
+	}
+}
