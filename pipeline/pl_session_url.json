@@ -1,0 +1,57 @@
+{
+	"name": "pl_session_url",
+	"properties": {
+		"activities": [
+			{
+				"name": "web_url",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://ergast.com/api/f1/seasons.json"
+				}
+			},
+			{
+				"name": "act_set_variable_url",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "web_url",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "year_wise_url",
+					"value": {
+						"value": "@{activity('web_url').output}",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"year_wise_url": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "ASSIGMENT_SESSION"
+		},
+		"annotations": []
+	}
+}
