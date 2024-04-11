@@ -137,10 +137,13 @@
 		"variables": {
 			"year_wise_url": {
 				"type": "String"
+			},
+			"year": {
+				"type": "String"
 			}
 		},
 		"folder": {
-			"name": "ASSIGMENT_SESSION"
+			"name": "ingestion"
 		},
 		"annotations": []
 	}

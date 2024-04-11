@@ -1,0 +1,30 @@
+{
+	"name": "ds_year_parents",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('season_',item().season,'.json')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('races','/',string(utcNow('yyyymmdd')))",
+					"type": "Expression"
+				},
+				"fileSystem": "output-formulaone"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "",
+			"firstRowAsHeader": false,
+			"quoteChar": ""
+		},
+		"schema": []
+	}
+}
