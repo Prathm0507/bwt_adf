@@ -1,5 +1,5 @@
 {
-	"name": "pl_session_url",
+	"name": "pl_session_formulaone",
 	"properties": {
 		"activities": [
 			{
@@ -42,6 +42,96 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "act_copy_year",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "act_set_variable_url",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "col",
+								"value": {
+									"value": "@variables('year_wise_url')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "col",
+									"type": "String"
+								},
+								"sink": {
+									"name": "col",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "df_web_source_year",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "df_url_year",
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": "formula1_session"
+						}
+					}
+				]
 			}
 		],
 		"variables": {

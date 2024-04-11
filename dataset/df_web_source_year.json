@@ -1,0 +1,40 @@
+{
+	"name": "df_web_source_year",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "abc.txt.txt",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Ram",
+				"type": "String"
+			},
+			{
+				"name": " \"xyz\"",
+				"type": "String"
+			},
+			{
+				"name": " \"IT\"",
+				"type": "String"
+			},
+			{
+				"name": " 3000",
+				"type": "String"
+			}
+		]
+	}
+}
