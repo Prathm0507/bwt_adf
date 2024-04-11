@@ -5,6 +5,12 @@
 		"factoryName": {
 			"value": "adf-bwt-dev"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
 		"ls_blob_storage_connectionString": {
 			"value": ""
 		},
@@ -46,6 +52,9 @@
 		},
 		"ls_source_question4th_connectionString": {
 			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://practicesessionazur.dfs.core.windows.net/"
 		},
 		"ls_services1_properties_typeProperties_url": {
 			"value": "https://practicesessionazur.dfs.core.windows.net/"
