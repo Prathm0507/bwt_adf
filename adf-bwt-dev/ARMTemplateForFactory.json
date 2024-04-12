@@ -1792,7 +1792,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "act_web",
+						"name": "act_web1",
 						"type": "WebActivity",
 						"dependsOn": [],
 						"policy": {
@@ -1817,7 +1817,7 @@
 						"type": "ForEach",
 						"dependsOn": [
 							{
-								"activity": "act_web",
+								"activity": "act_web1",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1826,7 +1826,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('act_web').output.MRData.RaceTable.races",
+								"value": "@activity('act_web1').output.MRData.RaceTable.races",
 								"type": "Expression"
 							},
 							"isSequential": true,
@@ -1847,7 +1847,7 @@
 										"method": "GET",
 										"headers": {},
 										"url": {
-											"value": "@concat('http://ergast.com/api/f1/',pipeline().parameters.take_season_from_parents,'/ ',item().round,'/','results.json?limit=100')",
+											"value": "@concat('http://ergast.com/api/f1/',pipeline().parameters.take_season_from_parents,'/',item().round,'/','results.json?limit=100')",
 											"type": "Expression"
 										}
 									}
